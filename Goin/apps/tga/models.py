@@ -5,7 +5,8 @@ from django.db import models
 
 class Admin(models.Model):
     external_id = models.PositiveIntegerField(
-        verbose_name='ID пользователя'
+        verbose_name='ID пользователя',
+        unique=True
     )
     name = models.TextField(
         verbose_name="Имя пользователя"

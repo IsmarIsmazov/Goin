@@ -8,6 +8,7 @@ from .bot import send_notification
 from .filters import ProductFilter
 from .models import Product
 from .serializers import ProductSerializer, OrderSerializer
+from ..tga.models import Admin
 
 
 @api_view(['GET', 'POST'])
@@ -47,12 +48,14 @@ def product_detail(request, pk):
     else:
         return Response(status=status.HTTP_403_FORBIDDEN)
 
+
 @api_view(["POST"])
 def order_post(request):
     if request.method == "POST":
         serializer = OrderSerializer(data=request.data)
         if serializer.is_valid():
-            chat_id = config('CHAT_KEY')
+            admin_ids = Admin.objects.values_list('external_id', flat=True)
+            chat_id = admin_ids[0] if admin_ids else None
             message_text = f'у вас новый клиент!\n\n' \
                            f'Имя: {request.data["username"]}\n' \
                            f'он заказал: ' \
