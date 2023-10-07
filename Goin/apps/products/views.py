@@ -6,8 +6,8 @@ from rest_framework.response import Response
 
 from .bot import send_notification
 from .filters import ProductFilter
-from .models import Product
-from .serializers import ProductSerializer, OrderSerializer
+from .models import Product, Category
+from .serializers import ProductSerializer, OrderSerializer, CategorySerializer
 from ..tga.models import Admin
 
 
@@ -47,6 +47,15 @@ def product_detail(request, pk):
 
     else:
         return Response(status=status.HTTP_403_FORBIDDEN)
+
+
+@api_view(['GET'])
+def category_list(request):
+    if request.method == "GET":
+        category = Category.objects.all()
+
+        serializer = CategorySerializer(category, many=True)
+        return Response(serializer.data)
 
 
 @api_view(["POST"])

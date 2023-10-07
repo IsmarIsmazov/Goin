@@ -17,11 +17,15 @@ class Category(models.Model):
 
 class Product(models.Model):
     title = models.CharField(max_length=155, verbose_name="Название продукта")
+    weight = models.FloatField(verbose_name="Вес продукта")
+    image = models.ImageField(verbose_name='Изображение продукта')
+    available = models.BooleanField(verbose_name='Имеется в наличие')
     category = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name="Категория продукта")
     descriptions = models.TextField(verbose_name="Описание продукта")
     price = models.IntegerField(default=0, verbose_name="Цена продукта")
-    created_at = models.DateField(auto_now=True, verbose_name="Дата создание продукта")
-    modified_at = models.DateField(auto_now_add=True, verbose_name="Дата изменение продукта")
+    discount = models.IntegerField(verbose_name="Скидка", null=True, blank=True)
+    old_price = models.IntegerField(verbose_name='Старая цена', blank=True, null=True)
+    popular = models.BooleanField(verbose_name='Популярная', blank=True, null=True)
 
     def __str__(self):
         return self.title
@@ -29,15 +33,6 @@ class Product(models.Model):
     class Meta:
         verbose_name = "Продукт"
         verbose_name_plural = "Продукты"
-
-
-class ProductImages(models.Model):
-    image = models.ImageField(verbose_name="Фотография продукта")
-    product = models.ForeignKey(Product, on_delete=models.DO_NOTHING, related_name="images", null=True, blank=True)
-
-    class Meta:
-        verbose_name = "Изображения продукта"
-        verbose_name_plural = "Изображении продукта"
 
 
 class Order(models.Model):
