@@ -64,7 +64,7 @@ def order_post(request):
         serializer = OrderSerializer(data=request.data)
         if serializer.is_valid():
             admin_ids = Admin.objects.values_list('external_id', flat=True)
-            chat_id = admin_ids[0] if admin_ids else None
+            list_id = admin_ids if admin_ids else None
             message_text = f'у вас новый клиент!\n\n' \
                            f'Имя: {request.data["username"]}\n' \
                            f'он заказал: ' \
@@ -78,7 +78,8 @@ def order_post(request):
                            f'Адрес: {request.data["address"]}'
 
             async def send_notification_async():
-                await send_notification(chat_id, message_text)
+                for chat_id in list_id:
+                    await send_notification(chat_id, message_text)
 
             loop = asyncio.new_event_loop()
             asyncio.set_event_loop(loop)
