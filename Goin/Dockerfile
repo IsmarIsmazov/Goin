@@ -1,4 +1,4 @@
-FROM python:latest
+FROM python:3.10
 LABEL authors="ismarhahazov"
 ENV PYTHONWRITEBYTECODE 1
 ENV PYTHONBUFFERED 1
