@@ -9,7 +9,7 @@ from .cors_host import *
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
-SECRET_KEY = env('SECRET_KEY')
+SECRET_KEY = "django-insecure-@91^k4+l-r)@#rxf8fnh0yoz(gaw9wg2xubr^7zmw2$s=+w&it"
 
 APP_MODE = env('APP_MODE', default='prod')
 if APP_MODE == 'prod':
