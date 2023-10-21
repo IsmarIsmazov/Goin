@@ -7,9 +7,9 @@ services:
     container_name: backend
     environment:
       API_KEY: "${API_KEY}"
-      DJANGO_SUPERUSER_USERNAME: "admin3"
-      DJANGO_SUPERUSER_EMAIL: "admin@gmail.com"
-      DJANGO_SUPERUSER_PASSWORD: "Def2638234"
+      DJANGO_SUPERUSER_USERNAME: ${ADMIN_NAME}
+      DJANGO_SUPERUSER_EMAIL: ${ADMIN_EMAIL}
+      DJANGO_SUPERUSER_PASSWORD: ${ADMIN_PASSWORD}
     command: >
       sh -c "
       python manage.py makemigrations &&

@@ -20,6 +20,7 @@ class Product(models.Model):
     weight = models.FloatField(verbose_name="Вес продукта")
     image = models.ImageField(verbose_name='Изображение продукта')
     available = models.BooleanField(verbose_name='Имеется в наличие')
+    in_warehouse = models.IntegerField(verbose_name='Количество товаров в складе')
     category = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name="Категория продукта")
     descriptions = models.TextField(verbose_name="Описание продукта")
     price = models.IntegerField(default=0, verbose_name="Цена продукта")
