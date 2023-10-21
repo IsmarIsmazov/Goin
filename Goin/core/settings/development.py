@@ -4,7 +4,7 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 DEBUG = env('DEBUG', cast=bool)
-ALLOWED_HOSTS = env('ALLOWED_HOSTS', default='0.0.0.0').split()
+ALLOWED_HOSTS = env('ALLOWED_HOSTS', default='*').split()
 
 DATABASES = {
     'default': {
