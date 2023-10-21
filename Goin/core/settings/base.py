@@ -9,7 +9,7 @@ from .cors_host import *
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
-SECRET_KEY = env('TOKEN')
+SECRET_KEY = env('SECRET_KEY')
 
 APP_MODE = env('APP_MODE', default='prod')
 if APP_MODE == 'prod':
