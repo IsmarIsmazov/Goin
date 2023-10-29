@@ -23,10 +23,16 @@ class ProductSerializer(serializers.ModelSerializer):
 class OrderSerializer(serializers.ModelSerializer):
     product = serializers.SlugRelatedField(
         queryset=Product.objects.all(),
-        slug_field="title"
+        slug_field="title",
+        many=True
     )
+
+    def to_representation(self, instance):
+        representation = super().to_representation(instance)
+        representation['product'] = ', '.join(representation['product'])
+        return representation
 
     class Meta:
         model = Order
-        fields = ('id', "username", "phone_number", "comment", "email",
+        fields = ('id', "username", "phone_number", "comment",
                   "address", "payment_method", "delivery_method", "product")

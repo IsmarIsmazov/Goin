@@ -37,9 +37,8 @@ class Product(models.Model):
 
 
 class Order(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.DO_NOTHING, verbose_name="Продукт")
+    product = models.ManyToManyField(Product, verbose_name="Продукты")
     username = models.CharField(max_length=155, verbose_name="Имя клиента")
-    email = models.EmailField(verbose_name="Почта клиента")
     address = models.CharField(max_length=255, verbose_name="Адрес клиента")
     payment_method = models.CharField(max_length=50, choices=PAYMENT_METHOD, verbose_name="Способ оплаты")
     delivery_method = models.CharField(max_length=50, choices=DELIVERY_METHOD, verbose_name="Способ доставки")
@@ -47,7 +46,7 @@ class Order(models.Model):
     comment = models.TextField(verbose_name="Комментария к заказу")
 
     def __str__(self):
-        return self.email, self.username
+        return self.username
 
     class Meta:
         verbose_name = "Заказать продукт"

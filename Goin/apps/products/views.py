@@ -68,12 +68,11 @@ def order_post(request):
             message_text = f'у вас новый клиент!\n\n' \
                            f'Имя: {request.data["username"]}\n' \
                            f'он заказал: ' \
-                           f'{request.data["product"]}\n' \
-                           f'Способ доставки: {request.data["delivery_method"]}\n' \
-                           f'Способ оплаты: {request.data["payment_method"]}\n' \
+                           f'{request.data["product"]}\n\n' \
+                           f'Способ доставки: {request.data["delivery_method"]}\n\n' \
+                           f'Способ оплаты: {request.data["payment_method"]}\n\n' \
                            f'вы сможете с ним связаться через: \n' \
-                           f'{request.data["email"]}\n' \
-                           f'{request.data["phone_number"]}\n' \
+                           f'Номер: {request.data["phone_number"]}\n' \
                            f'Комментария: {request.data["comment"]}\n' \
                            f'Адрес: {request.data["address"]}'
 

@@ -1,3 +1,5 @@
+from django.db.migrations import serializer
+
 PAYMENT_METHOD = (
     ("Оплата наличными", "Оплата наличными"),
     ("Оплата переводом", "Оплата переводом")

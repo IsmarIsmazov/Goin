@@ -5,17 +5,13 @@ from .local import *
 from .jazzmin import *
 from .yasg import *
 from .cors_host import *
-
+from .production import *
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 SECRET_KEY = env('SECRET_KEY')
 
-APP_MODE = env('APP_MODE', default='prod')
-if APP_MODE == 'prod':
-    from .production import *
-else:
-    from .development import *
+
 
 ROOT_URLCONF = 'core.urls'
 
@@ -41,12 +37,6 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
