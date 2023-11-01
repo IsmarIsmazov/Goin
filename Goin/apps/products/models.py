@@ -2,6 +2,7 @@ from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
 
 from .constants import PAYMENT_METHOD, DELIVERY_METHOD
+from .service import compress_image
 
 
 class Category(models.Model):
@@ -16,7 +17,7 @@ class Category(models.Model):
 
 
 class Product(models.Model):
-    title = models.CharField(max_length=155, verbose_name="Название продукта")
+    title = models.CharField(max_length=155, verbose_name="Название продукта", unique=True)
     weight = models.FloatField(verbose_name="Вес продукта")
     image = models.ImageField(verbose_name='Изображение продукта')
     available = models.BooleanField(verbose_name='Имеется в наличие')
@@ -27,6 +28,13 @@ class Product(models.Model):
     discount = models.IntegerField(verbose_name="Скидка", null=True, blank=True)
     old_price = models.IntegerField(verbose_name='Старая цена', blank=True, null=True)
     popular = models.BooleanField(verbose_name='Популярная', blank=True, null=True)
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        compress_image(self)
+
+    def compress_image(self):
+        return compress_image(self)
 
     def __str__(self):
         return self.title
