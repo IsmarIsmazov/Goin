@@ -9,6 +9,7 @@ from .filters import ProductFilter
 from .models import Product, Category
 from .serializers import ProductSerializer, OrderSerializer, CategorySerializer
 from ..tga.models import Admin
+from .paginations import ProductPagination
 
 
 @api_view(['GET', 'POST'])
@@ -87,3 +88,12 @@ def order_post(request):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['GET'])
+def popular_products(request):
+    popular_products = Product.objects.filter(popular=True)
+    paginator = ProductPagination()
+    result_page = paginator.paginate_queryset(popular_products, request)
+    serializer = ProductSerializer(result_page, many=True)
+    return paginator.get_paginated_response(serializer.data)

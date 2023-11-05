@@ -27,7 +27,7 @@ class Product(models.Model):
     price = models.IntegerField(default=0, verbose_name="Цена продукта")
     discount = models.IntegerField(verbose_name="Скидка", null=True, blank=True)
     old_price = models.IntegerField(verbose_name='Старая цена', blank=True, null=True)
-    popular = models.BooleanField(verbose_name='Популярная', blank=True, null=True)
+    popular = models.BooleanField(verbose_name='Популярная', blank=True, null=True, default=False)
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
