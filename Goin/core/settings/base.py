@@ -6,14 +6,15 @@ from .jazzmin import *
 from .yasg import *
 from .cors_host import *
 from .production import *
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 SECRET_KEY = env('SECRET_KEY')
 
-
-
 ROOT_URLCONF = 'core.urls'
+
+
 
 TEMPLATES = [
     {

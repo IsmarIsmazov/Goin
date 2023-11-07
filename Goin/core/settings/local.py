@@ -13,7 +13,6 @@ CREATE_APPS = [
     'apps.products',
     'apps.recommendation',
     'apps.tga',
-    'apps.banners',
 ]
 
 INSTALLED_LIBRARY = [

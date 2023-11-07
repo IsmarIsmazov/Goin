@@ -7,6 +7,7 @@ from .service import compress_image
 
 class Category(models.Model):
     name = models.CharField(max_length=120, verbose_name="Название категории")
+    image = models.ImageField(verbose_name='Изображение категории')
 
     def __str__(self):
         return self.name
