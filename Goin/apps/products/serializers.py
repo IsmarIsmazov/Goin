@@ -1,12 +1,18 @@
 from rest_framework import serializers
+from unidecode import unidecode
 
 from .models import Product, Order, Category
 
 
 class CategorySerializer(serializers.ModelSerializer):
+    english_name = serializers.SerializerMethodField()
+
     class Meta:
         model = Category
-        fields = ("name",)
+        fields = ("id", "name", "english_name",)
+
+    def get_english_name(self, instance):
+        return unidecode(instance.name)
 
 
 class ProductSerializer(serializers.ModelSerializer):
