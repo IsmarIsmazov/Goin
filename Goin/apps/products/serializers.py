@@ -9,7 +9,7 @@ class CategorySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Category
-        fields = ("id", "name", "english_name",)
+        fields = ("id", "name", "english_name", 'image')
 
     def get_english_name(self, instance):
         return unidecode(instance.name)
